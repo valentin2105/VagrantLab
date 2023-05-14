@@ -20,6 +20,6 @@
 
 - `sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}`  add a node on the cluster
 
-> # NODE_TOKEN comes from /var/lib/rancher/k3s/server/node-token on your server
+> `NODE_TOKEN` comes from `/var/lib/rancher/k3s/server/node-token` on your server
 
 - `sudo k3s kubectl get node,svc,pod -A`
