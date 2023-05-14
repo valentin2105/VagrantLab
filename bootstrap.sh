@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get -y install ca-certificates curl gnupg
+sudo apt-get -y install ca-certificates curl gnupg 
 
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -16,6 +16,5 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 sudo apt-get -y dist-upgrade
 sudo apt-get -y autoremove
-
 
 sudo docker run hello-world
