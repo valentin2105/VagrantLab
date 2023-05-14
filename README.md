@@ -32,7 +32,7 @@
 
 - `sudo k3s server &` launch k3s server
 
-- `sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}`  add a node on the cluster
+- `vagrant ssh box01 -- sudo k3s agent --server https://172.16.16.1:6443 --token ${NODE_TOKEN}`  add a node on the cluster
 
 > `NODE_TOKEN` comes from `/var/lib/rancher/k3s/server/node-token` on your server
 
