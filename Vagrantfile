@@ -17,6 +17,7 @@ servers=[
 
 Vagrant.configure(2) do |config|
     servers.each do |machine|
+        config.vm.provision :shell, path: "bootstrap.sh"
         config.vm.define machine[:hostname] do |node|
             node.vm.box = machine[:box]
             node.vm.hostname = machine[:hostname]
@@ -28,3 +29,4 @@ Vagrant.configure(2) do |config|
         end
     end
 end
+
