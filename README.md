@@ -6,6 +6,8 @@
 
 - `vagrant up` launch the lab (you can modify nodes on `Vagrantfile`)
 
+- `vagrant status | awk 'BEGIN{ tog=0; } /^$/{ tog=!tog; } /./ { if(tog){print $1} }' | xargs -P2 -I {} vagrant up {}` launch the lab simultaneously
+
 - `vagrant ssh-config > vagrant-ssh` fetch vagrant repo's ssh config
 
 - `ssh -F vagrant-ssh box01` ssh to box01
