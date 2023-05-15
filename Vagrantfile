@@ -4,20 +4,21 @@ servers=[
     :ip => "172.16.16.10",
     :box => "debian/bullseye64",
     :ram => 2048,
-    :cpu => 4
+    :cpu => 2
   },
   {
     :hostname => "box02",
     :ip => "172.16.16.20",
     :box => "debian/bullseye64",
-    :ram => 1024,
-    :cpu => 1
+    :ram => 2048,
+    :cpu => 2
   }
 ]
 
 Vagrant.configure(2) do |config|
+    config.vm.provision :shell, path: "bootstrap.sh"
     servers.each do |machine|
-        config.vm.provision :shell, path: "bootstrap.sh"
+
         config.vm.define machine[:hostname] do |node|
             node.vm.box = machine[:box]
             node.vm.hostname = machine[:hostname]
