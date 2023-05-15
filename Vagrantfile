@@ -3,8 +3,8 @@ servers=[
     :hostname => "box01",
     :ip => "172.16.16.10",
     :box => "debian/bullseye64",
-    :ram => 1024,
-    :cpu => 1
+    :ram => 2048,
+    :cpu => 4
   },
   {
     :hostname => "box02",
