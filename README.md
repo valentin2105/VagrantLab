@@ -22,6 +22,8 @@
 
 - `docker service scale web=3` scale your deployment to 3 replicas
 
+https://docs.docker.com/engine/swarm/stack-deploy/
+
 ## k3s
 
 - `wget https://github.com/k3s-io/k3s/releases/download/v1.27.1%2Bk3s1/k3s` download k3s locally 
