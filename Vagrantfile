@@ -5,15 +5,14 @@ servers=[
     :box => "debian/bookworm64",
     :ram => 2048,
     :cpu => 2
+  },
+  {
+    :hostname => "box02",
+    :ip => "172.16.16.20",
+    :box => "debian/bookworm64",
+    :ram => 2048,
+    :cpu => 2
   }
-#,
-#  {
-#    :hostname => "box02",
-#    :ip => "172.16.16.20",
-#    :box => "debian/bookworm64",
-#    :ram => 2048,
-#    :cpu => 2
-#  }
 ]
 
 Vagrant.configure(2) do |config|
