@@ -8,7 +8,7 @@
 
 - `vagrant ssh-config > vagrant-ssh` fetch vagrant repo's ssh config
 
-- `ssh -F vagrant-ssh box01` ssh to box01
+- `ssh -F vagrant-ssh box01` ssh to box01 or `vagrant ssh box01`
 
 - `vagrant destroy -f` destroy all lab
 
