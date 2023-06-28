@@ -1,5 +1,4 @@
 #!/bin/bash
-
 sudo apt-get update
 sudo apt-get -y install ca-certificates curl gnupg open-iscsi
 
@@ -21,7 +20,7 @@ sudo apt-get -y autoremove
 wget https://github.com/k3s-io/k3s/releases/download/v1.27.2%2Bk3s1/k3s 
 chmod +x k3s && sudo mv k3s /usr/local/bin/ 
 
-sudo docker run hello-world
-
 echo "nameserver 8.8.8.8" | sudo tee    /etc/resolv.conf
 echo "nameserver 1.1.1.1" | sudo tee -a /etc/resolv.conf
+
+sudo docker run hello-world
