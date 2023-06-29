@@ -53,7 +53,7 @@ CMD ["python", "app.py"]
 ```
   services:
   web:
-    image: 127.0.0.1:5000/stackdemo
+    image: 127.0.0.1:5000/demoapp
     build: .
     ports:
       - "8000:8000"
