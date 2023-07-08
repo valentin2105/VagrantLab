@@ -1,0 +1,47 @@
+services:
+  db:
+    image: mariadb:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - wp_data:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+
+volumes:
+  wp_data:
+    driver: local
+    driver_opts:
+       o: bind
+       type: none
+       device: /mnt/wp_data
+  db_data:
+    driver: local
+    driver_opts:
+       o: bind
+       type: none
+       device: /mnt/db_data
