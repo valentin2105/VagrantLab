@@ -10,7 +10,7 @@
 127.0.0.1  localhost
 
 192.168.56.10 box01
-192.168.56.10 box02
+192.168.56.20 box02
 ```
 
 ## box01
@@ -42,13 +42,13 @@
 
 - `gluster peer probe box01`
 
+- `gluster pool list`
+
 - `mkdir -p /gluster/vol01`
 
 > Exit 
 
 ## box01
-
-- `gluster peer probe box02`
 
 - `mkdir -p /gluster/vol01`
 
