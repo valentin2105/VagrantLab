@@ -12,7 +12,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
 
   wordpress:
     image: wordpress:latest
@@ -29,7 +29,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
 
 
 volumes:
