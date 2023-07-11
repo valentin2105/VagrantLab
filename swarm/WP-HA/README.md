@@ -4,7 +4,7 @@
 
 - `vagrant ssh box01 / box02`
 
-- `sudo nano /etc/resolv.conf`
+- `sudo nano /etc/hosts`
 
 ```
 127.0.0.1  localhost
