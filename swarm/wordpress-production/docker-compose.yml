@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:latest
+    image: reg.ntl.nc/library/mariadb:latest
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -15,7 +15,7 @@ services:
           - node.role == worker
 
   wordpress:
-    image: wordpress:latest
+    image: reg.ntl.nc/library/wordpress:latest
     ports:
       - 80:80
     restart: always

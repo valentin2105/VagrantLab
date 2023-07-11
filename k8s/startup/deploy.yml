@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:stable-alpine
+        image: reg.ntl.nc/library/nginx:latest
         ports:
         - containerPort: 80
 
