@@ -6,15 +6,21 @@
 
 - `vagrant up` launch the lab (you can modify nodes on `Vagrantfile`)
 
+- `vagrant ssh box01` ssh to box01 from VagrantFolder
+
 - `vagrant ssh-config > vagrant-ssh` fetch vagrant repo's ssh config
 
-- `ssh -F vagrant-ssh box01` ssh to box01 or `vagrant ssh box01`
+- `ssh -F vagrant-ssh box01` ssh to box01
 
 - `vagrant destroy -f` destroy all lab
+
+- `CMD="docker ps" && for i in box01 box02 ; do vagrant ssh $i -- sudo $CMD ;done` Launch command to each box
 
 ## Harbor
 
 - `git clone https://github.com/valentin2105/VagrantLab.git`
+
+- `sudo su && echo "127.0.0.1 harbor.local >> /etc/hosts && exit`
 
 - `cd VagrantLab &&  ./install.sh --with-trivy`
 
