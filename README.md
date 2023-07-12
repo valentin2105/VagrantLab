@@ -14,7 +14,6 @@
 
 - `vagrant destroy -f` destroy all lab
 
-- `CMD="docker ps" && for i in box01 box02 ; do vagrant ssh $i -- sudo $CMD ;done` Launch command to each box
+- `CMD="docker ps" && for i in box01 box02 ; do vagrant ssh $i -- sudo $CMD ;done` 
 
-
-
+Launch command on each box
