@@ -1,6 +1,6 @@
 # VagrantLab
 
-> #### This lab provide a Docker-ready multi-VM environment for Swarm / k8s / Salt 
+> #### This lab provide a Docker-ready multi-VM environment for Docker-Swarm and Kubernetes (k3s)
 
 ## Useful commands
 
