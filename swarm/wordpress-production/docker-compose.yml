@@ -17,7 +17,7 @@ services:
   wordpress:
     image: reg.ntl.nc/library/wordpress:latest
     ports:
-      - 80:80
+      - 8080:80
     restart: always
     volumes:
       - wp_data:/var/www/html
@@ -30,7 +30,6 @@ services:
       placement:
         constraints:
           - node.role == worker
-
 
 volumes:
   wp_data:
