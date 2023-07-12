@@ -1,14 +1,12 @@
 # GlusterFS Vagrant / Swarm
 
-## Global
+## Sur chaque box
 
 - `vagrant ssh box01 / box02`
 
-- `sudo nano /etc/hosts`
+- `sudo vim /etc/hosts`
 
 ```
-127.0.0.1  localhost
-
 192.168.56.10 box01
 192.168.56.20 box02
 ```
@@ -25,8 +23,7 @@
 
 - `systemctl enable glusterd`
 
-
-> Exit 
+- `mkdir -p /gluster/vol01`
 
 ## box02
 
@@ -46,11 +43,8 @@
 
 - `mkdir -p /gluster/vol01`
 
-> Exit 
 
 ## box01
-
-- `mkdir -p /gluster/vol01`
 
 - `sudo gluster volume create vol01 replica 2 box01:/gluster/vol1 box02:/gluster/vol1 force`
 
@@ -61,7 +55,6 @@
 - `echo 'localhost:/vol01 /mnt glusterfs defaults,_netdev,backupvolfile-server=localhost 0 0' >> /etc/fstab`
 
 - `mount.glusterfs localhost:/vol01 /mnt`
-> Exit 
 
 ## box02
 
@@ -69,4 +62,4 @@
 
 - `mount.glusterfs localhost:/vol01 /mnt`
 
-
+- `mkdir -p /mnt/wp_data /mnt/db_data`
