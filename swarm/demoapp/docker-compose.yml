@@ -1,6 +1,6 @@
 services:
   web:
-    image: 127.0.0.1:5000/demoapp
+    image: 127.0.0.1:5000/demoapp:v1
     build: .
     ports:
       - "8000:5000"

@@ -17,4 +17,3 @@ spec:
         image: reg.ntl.nc/library/nginx:latest
         ports:
         - containerPort: 80
-

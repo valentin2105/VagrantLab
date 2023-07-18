@@ -8,7 +8,7 @@ services:
       - MYSQL_ROOT_PASSWORD=somewordpress
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
-      - MYSQL_PASSWORD=wordpress
+      - MYSQL_PASSWORD=quah0thohc9iefoh4aez1Ohzi7geiVo7
     deploy:
       placement:
         constraints:
@@ -24,7 +24,7 @@ services:
     environment:
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_USER=wordpress
-      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_PASSWORD=quah0thohc9iefoh4aez1Ohzi7geiVo7
       - WORDPRESS_DB_NAME=wordpress
     deploy:
       placement:
@@ -44,3 +44,10 @@ volumes:
        o: bind
        type: none
        device: /mnt/db_data
+
+
+
+
+
+
+
