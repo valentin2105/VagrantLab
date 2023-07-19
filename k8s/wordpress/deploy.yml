@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp
+  namespace: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+      - name: wp
+        image: reg.ntl.nc/library/wordpress:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: DEMO_GREETING
+          value: ""
+        - name: DEMO_FAREWELL
+          value: ""
+        nodeSelector:
+          cloud.google.com/gke-nodepool: pool-01
+        volumeMounts:
+        # a mount for site-data
+          - name: wp_data
+            mountPath: /var/www/html
+        # another mount for nginx config
+    volumes:
+      - name: wp_data
+        persistentVolumeClaim:
+          claimName: wp_data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: reg.ntl.nc/library/mariadb:latest
+        ports:
+        - containerPort: 3306
+        env:
+        - name: DEMO_GREETING
+          value: ""
+        - name: DEMO_FAREWELL
+          value: ""
+        nodeSelector:
+          cloud.google.com/gke-nodepool: pool-01
+        volumeMounts:
+        # a mount for site-data
+          - name: db_data
+            mountPath: /var/lib/mysql
+        # another mount for nginx config
+    volumes:
+      - name: db_data
+        persistentVolumeClaim:
+          claimName: db_data
+
+
+
+
+
+
+
+
