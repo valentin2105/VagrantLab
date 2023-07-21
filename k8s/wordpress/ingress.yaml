@@ -1,8 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wp
-  namespace: wordpress
+  name: wordpress
 spec:
   rules:
     - host: supersite.localhost
@@ -12,6 +11,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name:  wp
+                name:  wordpress
                 port:
                   number: 80

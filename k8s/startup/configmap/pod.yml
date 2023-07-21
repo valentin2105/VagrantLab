@@ -7,6 +7,7 @@ spec:
     - name: demo
       image: reg.ntl.nc/library/alpine:latest
       command: ["sleep", "3600"]
+
       env:
         # Define the environment variable
         - name: PLAYER_INITIAL_LIVES 
@@ -19,10 +20,13 @@ spec:
             configMapKeyRef:
               name: game-demo
               key: ui_properties_file_name
+
+
       volumeMounts:
       - name: config
         mountPath: "/config"
         readOnly: true
+
   volumes:
   # You set volumes at the Pod level, then mount them into containers inside that Pod
   - name: config

@@ -6,14 +6,14 @@ metadata:
 spec:
   containers:
   - name: volume-test
-    image: nginx:stable-alpine
+    image: reg.ntl.nc/library/nginx:latest
     imagePullPolicy: IfNotPresent
     volumeMounts:
-    - name: volv
+    - name: vol
       mountPath: /data
     ports:
     - containerPort: 80
   volumes:
-  - name: volv
+  - name: vol
     persistentVolumeClaim:
-      claimName: longhorn-volv-pvc
+      claimName: longhorn-vol-pvc
