@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine
+spec:
+  containers:
+  - name: alpine
+    image: reg.ntl.nc/proxy/alpine:latest
+    # Just spin & wait forever
+    command: [ "/bin/sh", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]

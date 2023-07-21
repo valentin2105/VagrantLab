@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-only-kube-public
+  namespace: default
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-public
+    ports:
+    - port: 8000
+      protocol: TCP
+  podSelector: {}
+  policyTypes:
+  - Ingress
