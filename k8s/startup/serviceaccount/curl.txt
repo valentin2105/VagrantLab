@@ -1,0 +1,5 @@
+export TOKEN=$(cat /run/secrets/tokens/robot)
+
+curl  --header "Authorization: Bearer $TOKEN"  https://kubernetes.default.svc.cluster.local:443/api/v1/namespaces/default/pods -k
+
+

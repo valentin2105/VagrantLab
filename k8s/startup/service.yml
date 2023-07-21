@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: nginx
 spec:
+  # match deployment selector
   selector:
     app: nginx
   ports:

@@ -12,6 +12,7 @@ spec:
       - pathType: Prefix
         path: "/"
         backend:
+          # service to be served by ingress
           service:
             name: nginx
             port:
