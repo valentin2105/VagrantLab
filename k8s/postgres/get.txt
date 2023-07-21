@@ -1,0 +1,7 @@
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm fetch bitnami/postgresql
+
+tar -zxvf postgresql-12.6.8.tgz
+
+rm postgresql-12.6.8.tgz

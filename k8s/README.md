@@ -22,7 +22,6 @@
 
 - `wget https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/`
 
-
 - `wget https://get.helm.sh/helm-v3.12.2-linux-amd64.tar.gz && tar -zxvf helm-v3.12.2-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin/`
 
 - `k get node,svc,pod -A`

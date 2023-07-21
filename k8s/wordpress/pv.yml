@@ -7,11 +7,11 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 5Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/mnt/wp_data"
+    path: "/mnt/supersite.localhost/wp_data"
 
 ---
 
@@ -28,5 +28,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/db_data"
+    path: "/mnt/supersite.localhost/db_data"
 
