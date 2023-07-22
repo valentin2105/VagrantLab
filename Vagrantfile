@@ -3,16 +3,23 @@ servers=[
     :hostname => "box01",
     :ip => "192.168.56.10",
     :box => "debian/bookworm64",
-    :ram => 2048,
+    :ram => 4096,
     :cpu => 2
   },
   {
     :hostname => "box02",
     :ip => "192.168.56.20",
     :box => "debian/bookworm64",
-    :ram => 2048,
+    :ram => 4096,
     :cpu => 2
   }
+#  {
+#    :hostname => "kubernetes",
+#    :ip => "192.168.56.50",
+#    :box => "debian/bookworm64",
+#    :ram => 4096,
+#    :cpu => 4
+#  }
 ]
 
 Vagrant.configure(2) do |config|
