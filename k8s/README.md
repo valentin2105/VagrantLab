@@ -8,6 +8,12 @@
 
 - `chmod +x k3s && mv k3s /usr/local/bin/` k3s executable and in PATH
 
+- `cd /home/formation/ && echo "alias k=kubectl" >> .bashrc && source .bashrc`
+
+- `wget https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/`
+
+- `wget https://get.helm.sh/helm-v3.12.2-linux-amd64.tar.gz && tar -zxvf helm-v3.12.2-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin/`
+
 - `sudo k3s server &` launch k3s server
 
 > `${NODE_TOKEN}` comes from `/var/lib/rancher/k3s/server/node-token` on your machine
@@ -17,12 +23,6 @@
 - `vagrant ssh box02 -- sudo k3s agent --server https://192.168.56.1:6443 --flannel-iface eth1 --token ${NODE_TOKEN}`  add a node on the cluster
 
 - `sudo mkdir /home/formation/.kube && sudo cp /etc/rancher/k3s/k3s.yaml /home/formation/.kube/config  && sudo chown formation:formation /home/formation/.kube/config`
-
-- `cd /home/formation/ && echo "alias k=kubectl" >> .bashrc && source .bashrc`
-
-- `wget https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/`
-
-- `wget https://get.helm.sh/helm-v3.12.2-linux-amd64.tar.gz && tar -zxvf helm-v3.12.2-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin/`
 
 - `k get node,svc,pod -A`
 
