@@ -6,7 +6,7 @@
 
 - `wget https://github.com/k3s-io/k3s/releases/download/v1.27.3%2Bk3s1/k3s` download k3s locally 
 
-- `chmod +x k3s && mv k3s /usr/local/bin/` k3s executable and in PATH
+- `chmod +x k3s && sudo mv k3s /usr/local/bin/` k3s executable and in PATH
 
 - `cd /home/formation/ && echo "alias k=kubectl" >> .bashrc && source .bashrc`
 
