@@ -3,7 +3,7 @@
 export DEBIAN_FRONTEND=noninteractive
 
 sudo apt-get update
-sudo apt-get -y install ca-certificates curl gnupg open-iscsi git
+sudo apt-get -y install ca-certificates curl gnupg open-iscsi git conntrackd conntrack
 sudo apt-get -y dist-upgrade
 
 sudo systemctl start iscsid
