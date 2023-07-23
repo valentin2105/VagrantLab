@@ -1,5 +1,12 @@
 ## k3s
 
+```
+sudo zfs create -s -V 10GB rpool/ROOT/ubuntu_rbl8ta/var/lib/rancher
+sudo mkfs.ext4 /dev/rpool/ROOT/ubuntu_rbl8ta/var/lib/rancher
+echo "/dev/zvol/zpool/k3s/agent /var/lib/rancher/k3s/agent ext4 defaults,_netdev 0 0" | sudo tee -a /etc/fstab
+sudo mount -a
+```
+
 - `sudo apt-get update && sudo apt-get -y install open-iscsi`
 
 - `sudo systemctl start iscsid`
