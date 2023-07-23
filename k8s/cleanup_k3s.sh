@@ -16,4 +16,5 @@ mount |grep kubelet |awk '{print $3}' | while read a ; do umount $a ;done
 rm -rf /var/lib/rancher/k3s
 rm -rf /etc/rancher/k3s
 rm -rf /var/lib/longhorn
+rm -rf /usr/local/bin/k3s
 
