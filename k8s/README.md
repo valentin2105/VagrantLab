@@ -4,7 +4,7 @@
 
 - `sudo systemctl start iscsid`
 
-- `wget https://github.com/k3s-io/k3s/releases/download/v1.27.3%2Bk3s1/k3s` download k3s locally 
+- `wget https://github.com/k3s-io/k3s/releases/download/v1.27.2%2Bk3s1/k3s` download k3s locally 
 
 - `chmod +x k3s && sudo mv k3s /usr/local/bin/` k3s executable and in PATH
 
