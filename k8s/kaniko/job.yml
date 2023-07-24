@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kaniko-build
+spec:
+  template:
+    spec:
+      containers:
+      - image: gcr.io/kaniko-project/executor:v1.12.1
+        args:
+        - "--dockerfile=/tmp/build/Dockerfile"
+        - "--context=dir:///tmp/build"
+        - "--no-push"
+        name: kaniko-build
+        resources: {}
+        volumeMounts:
+        - name: build-tools-volume
+          mountPath: /tmp/build/Dockerfile
+          subPath: Dockerfile
+        - name: build-tools-volume
+          mountPath: /tmp/build/package.json
+          subPath: package.json
+        - name: build-tools-volume
+          mountPath: /tmp/build/server.js
+          subPath: server.js
+      volumes:
+        - name: build-tools-volume
+          configMap:
+            name: build-tools
+      restartPolicy: Never
+status: {}
