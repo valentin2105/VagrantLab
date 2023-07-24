@@ -70,10 +70,7 @@ echo "192.168.56.20 box02" | tee -a /etc/hosts
 
 - `systemctl start haproxy && systemctl enable haproxy`
 
-- `echo "127.0.0.1 supersite.localhost" >> /etc/hosts`
 
 > stats is available at http://supersite.localhost:8000/
 
 On désactive le schedule sur le master
-
-- `kubectl cordon "node-master"`
