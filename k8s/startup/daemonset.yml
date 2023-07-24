@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: whoami
+  labels:
+    name: whoami
+spec:
+  selector:
+    matchLabels:
+      name: whoami
+  template:
+    metadata:
+      labels:
+       # deployment selector
+        name: whoami
+    spec:
+      containers:
+      - name: whoami
+        image: reg.ntl.nc/library/whoami:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami
+spec:
+  # match deployment selector
+  selector:
+    name: whoami
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 80
+

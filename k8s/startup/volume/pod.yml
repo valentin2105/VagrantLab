@@ -3,10 +3,6 @@ kind: Pod
 metadata:
   name: local-pv-pod
 spec:
-  volumes:
-    - name: local-pv-storage
-      persistentVolumeClaim:
-        claimName: local-pv-claim
   containers:
     - name: local-pv-container
       image: reg.ntl.nc/library/nginx
@@ -17,4 +13,8 @@ spec:
         - mountPath: "/tmp/storage"
           name: local-pv-storage
 
+  volumes:
+    - name: local-pv-storage
+      persistentVolumeClaim:
+        claimName: local-pv-claim
 

@@ -2,9 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
 spec:
+  ingressClassName: traefik
   rules:
   - host: "foo.bar.com"
     http:

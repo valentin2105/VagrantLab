@@ -10,8 +10,14 @@ spec:
         matchLabels:
           kubernetes.io/metadata.name: kube-public
     ports:
+    - port: 80
+      protocol: TCP
     - port: 8000
       protocol: TCP
   podSelector: {}
   policyTypes:
   - Ingress
+
+
+
+

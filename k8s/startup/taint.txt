@@ -1,0 +1,1 @@
+kubectl taint node MASTER-NODE node-role.kubernetes.io/master:NoSchedule
