@@ -17,6 +17,7 @@ echo "192.168.56.20 box02" | tee -a /etc/hosts
 
 - `systemctl enable glusterd`
 
+- `mkdir -p /gluster/volume01`
 
 ## sur box02
 
@@ -38,6 +39,8 @@ echo "192.168.56.20 box02" | tee -a /etc/hosts
 - `gluster peer probe box01`
 
 - `gluster pool list`
+
+- `mkdir -p /gluster/volume01`
 
 - `gluster volume create vol01 replica 2 box01:/gluster/volume01 box02:/gluster/volume01 force`
 
