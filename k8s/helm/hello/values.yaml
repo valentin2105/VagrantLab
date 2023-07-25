@@ -17,21 +17,15 @@ service:
   targetPort: 8080
 
 ingress:
-  enabled: false
+  enabled: true
   className: "traefik"
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    # kubernetes.io/tls-acme: "true"
+  annotations: []
   hosts:
     - host: helloworld.dev.org
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
 
 resources:
   limits:
@@ -51,13 +45,13 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext:
+securityContext: {}
   runAsNonRoot: true
+  runAsUser: 1000
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsUser: 1000
 
 autoscaling:
   enabled: false
