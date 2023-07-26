@@ -18,6 +18,7 @@ metadata:
   labels:
     app: wordpress
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteMany
   resources:
