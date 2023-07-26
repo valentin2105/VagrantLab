@@ -14,11 +14,11 @@ servers=[
     :cpu => 2
   }
 #  {
-#    :hostname => "k3s-master",
+#    :hostname => "k8s",
 #    :ip => "192.168.56.50",
 #    :box => "debian/bookworm64",
-#    :ram => 2048,
-#    :cpu => 2
+#    :ram => 4096,
+#    :cpu => 4
 #  }
 ]
 

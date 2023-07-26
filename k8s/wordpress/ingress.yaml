@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: wordpress
 spec:
+  ingressClassName: traefik
   rules:
     - host: supersite.localhost
       http:
