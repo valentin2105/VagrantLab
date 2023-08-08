@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+
+  # tells deployment to run 2 pods matching the template
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: reg.ntl.nc/library/{{ .Values.name }}:latest
+        ports:
+        - containerPort: {{ .Values.port }}
