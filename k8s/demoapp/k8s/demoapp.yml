@@ -25,6 +25,7 @@ kind: Service
 metadata:
   name: demoapp
 spec:
+  type: NodePort
   # match deployment selector
   selector:
     app: demoapp
@@ -32,22 +33,3 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demoapp
-spec:
-  ingressClassName: traefik
-  rules:
-  - host: "super.demoapp.com"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          # service to be served by ingress
-          service:
-            name: demoapp
-            port:
-              number: 5000
