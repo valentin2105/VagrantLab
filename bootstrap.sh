@@ -19,6 +19,8 @@ sudo systemctl start iscsid
 
 #sudo apt-get update
 #sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin  || exit 1
+#sudo docker ps
+
 mkdir -p /etc/rancher/k3s
 
 cat <<EOF >>/etc/rancher/k3s/registries.yaml
@@ -30,10 +32,9 @@ EOF
 
 sudo apt-get -y autoremove
 
-wget https://github.com/k3s-io/k3s/releases/download/v1.27.3%2Bk3s1/k3s -q --show-progress
+wget https://github.com/k3s-io/k3s/releases/download/v1.28.7%2Bk3s1/k3s -q --show-progress
 chmod +x k3s && sudo mv k3s /usr/local/bin/ 
 
 echo "nameserver 8.8.8.8" | sudo tee    /etc/resolv.conf
 echo "nameserver 1.1.1.1" | sudo tee -a /etc/resolv.conf
 
-#sudo docker ps
