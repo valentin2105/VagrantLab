@@ -10,7 +10,7 @@
 
 - `cd /home/formation/ && echo "alias k=kubectl" >> .bashrc && source .bashrc`
 
-- `wget https://dl.k8s.io/release/v1.27.7/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/`
+- `wget https://dl.k8s.io/release/v1.28.7/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/`
 
 - `wget https://get.helm.sh/helm-v3.14.3-linux-amd64.tar.gz && tar -zxvf helm-v3.14.3-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin/`
 
