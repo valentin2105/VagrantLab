@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: demo
-      image: reg.ntl.nc/library/alpine:latest
+      image: reg.ntl.nc/proxy/library/alpine:latest
       command: ["sleep", "3600"]
 
       env:

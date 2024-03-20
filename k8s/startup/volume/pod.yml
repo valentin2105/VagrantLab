@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: local-pv-container
-      image: reg.ntl.nc/library/nginx
+      image: reg.ntl.nc/proxy/library/nginx
       ports:
         - containerPort: 80
           name: "http-server"

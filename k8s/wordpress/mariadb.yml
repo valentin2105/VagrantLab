@@ -45,7 +45,7 @@ spec:
         tier: mysql
     spec:
       containers:
-      - image: reg.ntl.nc/library/mariadb:latest
+      - image: reg.ntl.nc/proxy/library/mariadb:latest
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD

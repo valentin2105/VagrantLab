@@ -4,7 +4,7 @@ metadata:
   name: robot
 spec:
   containers:
-  - image: reg.ntl.nc/library/nginx:latest
+  - image: reg.ntl.nc/proxy/library/nginx:latest
     name: nginx
     volumeMounts:
     - mountPath: /var/run/secrets/tokens

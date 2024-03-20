@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM reg.ntl.nc/library/python:3.9-alpine
+FROM reg.ntl.nc/proxy/library/python:3.9-alpine
 ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt

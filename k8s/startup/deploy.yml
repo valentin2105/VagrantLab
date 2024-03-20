@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: reg.ntl.nc/library/nginx:latest
+        image: reg.ntl.nc/proxy/library/nginx:latest
         ports:
         - containerPort: 80
