@@ -1,3 +1,5 @@
 name: whoami
+image: reg.ntl.nc/proxy/traefik/whoami
+tag: latest
 port: 80
 vhost: foo.bar.com

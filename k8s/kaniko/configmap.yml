@@ -4,7 +4,7 @@ metadata:
   name: build-tools
 data:
   Dockerfile: |
-    FROM node:16-alpine3.12
+    FROM reg.ntl.nc/proxy/library/node:16-alpine3.12
 
     # Create app directory
     WORKDIR /usr/src/app
