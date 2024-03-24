@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: whoami
-        image: reg.ntl.nc/proxy/library/whoami:latest
+        image: reg.ntl.nc/proxy/traefik/whoami:latest
         resources:
           requests:
             cpu: 100m
