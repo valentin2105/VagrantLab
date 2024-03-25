@@ -1,5 +1,5 @@
 name: whoami
-image: reg.ntl.nc/proxy/traefik/nginx
+image: reg.ntl.nc/proxy/traefik/whoami
 tag: latest
 replicas: 2
 port: 80
