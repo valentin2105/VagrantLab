@@ -1,0 +1,5 @@
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
+
+
