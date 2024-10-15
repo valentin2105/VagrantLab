@@ -18,8 +18,8 @@ DANS LE NAMESPACE "demoapp"
 
 1 Deployment pour votre Appli
 1 Service pour votre Appli
-1 Ingress pour votre Appli
+1 Ingress pour votre Appli (demoapp.com)
 
 
-1 Deployment pour Redis
-1 Service Pour Redis
+1 Deployment pour Redis (image : reg.ntl.nc/proxy/library/redis:latest) 
+1 Service Pour Redis (port 6379)
