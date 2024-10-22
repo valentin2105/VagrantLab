@@ -46,7 +46,9 @@
 
 ## box01
 
-- `sudo gluster volume create vol01 replica 2 box01:/gluster/vol1 box02:/gluster/vol1 force`
+- `sudo su`
+
+- `gluster volume create vol01 replica 2 box01:/gluster/vol1 box02:/gluster/vol1 force`
 
 - `gluster volume start vol01`
 
@@ -57,6 +59,8 @@
 - `mount.glusterfs localhost:/vol01 /mnt`
 
 ## box02
+
+- `sudo su`
 
 - `echo 'localhost:/vol01 /mnt glusterfs defaults,_netdev,backupvolfile-server=localhost 0 0' >> /etc/fstab`
 
