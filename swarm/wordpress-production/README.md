@@ -62,7 +62,7 @@
 
 - `mount.glusterfs localhost:/vol01 /mnt`
 
-- `mkdir -p /mnt/wp_data /mnt/db_data`
+- `mkdir -p /mnt/supersite-localhost/wp_data /mnt/supersite-localhost/db_data`
 
 
 ## PC Formation

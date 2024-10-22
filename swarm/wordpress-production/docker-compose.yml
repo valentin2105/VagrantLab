@@ -1,6 +1,6 @@
 services:
   db:
-    image: reg.ntl.nc/library/mariadb:latest
+    image: reg.ntl.nc/proxy/library/mariadb:latest
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -15,7 +15,7 @@ services:
           - node.role == worker
 
   wordpress:
-    image: reg.ntl.nc/library/wordpress:latest
+    image: reg.ntl.nc/proxy/library/wordpress:latest
     ports:
       - 8080:80
     restart: always
@@ -37,17 +37,11 @@ volumes:
     driver_opts:
        o: bind
        type: none
-       device: /mnt/wp_data
+       device: /mnt/supersite-localhost/wp_data
   db_data:
     driver: local
     driver_opts:
        o: bind
        type: none
-       device: /mnt/db_data
-
-
-
-
-
-
+       device: /mnt/supersite-localhost/db_data
 
