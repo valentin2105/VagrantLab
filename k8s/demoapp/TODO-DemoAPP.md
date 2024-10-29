@@ -15,9 +15,9 @@ buildah push  reg.ntl.nc/formation/VOTRENOM:latest
 
 DANS LE NAMESPACE "demoapp"  :   `kubectl create namespace demoapp`
 
-- 1 Deployment pour votre Appli
-- 1 Service pour votre Appli
-- 1 Ingress pour votre Appli (demoapp.com)
+- 1 Deployment pour demoapp (image -> celle que vous venez de builder)
+- 1 Service pour votre demoapp
+- 1 Ingress pour votre demoapp (demoapp.localhost)
 
 --- 
 
