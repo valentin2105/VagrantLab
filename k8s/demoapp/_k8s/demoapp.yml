@@ -17,6 +17,30 @@ spec:
         image: reg.ntl.nc/formation/nous:latest
         ports:
         - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"        # CPU request
+            memory: "32Mi"    # Memory request
+          limits:
+            cpu: "500m"        # CPU limit
+            memory: "256Mi"    # Memory limit
+        livenessProbe:
+          httpGet:
+            path: /       # Adjust to your application’s health endpoint
+            port: 5000
+          initialDelaySeconds: 10  # Wait before checking (adjust as needed)
+          periodSeconds: 10        # Check every 10 seconds
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /       # Adjust to your application's ready endpoint
+            port: 5000
+          initialDelaySeconds: 5   # Start checking sooner than liveness
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+
 
 ---
 
