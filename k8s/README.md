@@ -1,5 +1,7 @@
 ## k3s
 
+> On your local machine
+
 - `sudo apt-get update && sudo apt-get -y install open-iscsi`
 
 - `sudo systemctl start iscsid`
@@ -22,11 +24,15 @@
 
 - `exit`
 
+---
+
 - `vagrant ssh box02`
 
 - On the box02 -> `curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent --server https://192.168.56.1:6443 --token ${NODE_TOKEN} --flannel-iface eth1" sh -s -`
 
 - `exit`
+
+---
 
 - `cd && mkdir .kube/ && sudo cp /etc/rancher/k3s/k3s.yaml .kube/config  && sudo chown $USER:$USER .kube/config`
 
@@ -35,7 +41,8 @@
 - `helm list -A`
 
 
-### Old version
+---
+### Old version (dont do that)
 - `wget https://github.com/k3s-io/k3s/releases/download/v1.31.4%2Bk3s1/k3s` download k3s locally
 
 - `chmod +x k3s && sudo mv k3s /usr/local/bin/` k3s executable and in PATH
