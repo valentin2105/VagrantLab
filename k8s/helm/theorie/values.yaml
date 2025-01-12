@@ -1,6 +1,6 @@
 name: whoami
-image: reg.ntl.nc/proxy/traefik/whoami
+image: reg.ntl.nc/proxy/nginxdemos/hello
 tag: latest
-replicas: 2
+replicas: 4
 port: 80
-vhost: foo.bar.com
+vhost: whoami.com
