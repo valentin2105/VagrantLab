@@ -13,6 +13,6 @@ spec:
         backend:
           # service to be served by ingress
           service:
-            name: nginx
+            name: nginx-hello
             port:
               number: 80

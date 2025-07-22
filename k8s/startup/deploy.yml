@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-hello
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-hello
 
   # tells deployment to run 2 pods matching the template
   replicas: 2
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-hello
     spec:
       containers:
-      - name: nginx
-        image: reg.ntl.nc/proxy/library/nginx:latest
+      - name: nginx-hello
+        image: reg.ntl.nc/proxy/nginxdemos/hello:latest
         ports:
         - containerPort: 80
