@@ -12,7 +12,7 @@
 bash -c 'cat <<EOF >> /etc/hosts
 192.168.56.10 box01
 192.168.56.20 box02
-192.168.56.30 box02
+192.168.56.30 box03
 EOF'
 ```
 - `apt-get -y install glusterfs-server`
@@ -33,7 +33,7 @@ EOF'
 bash -c 'cat <<EOF >> /etc/hosts
 192.168.56.10 box01
 192.168.56.20 box02
-192.168.56.30 box02
+192.168.56.30 box03
 EOF'
 ```
 
@@ -60,7 +60,7 @@ EOF'
 bash -c 'cat <<EOF >> /etc/hosts
 192.168.56.10 box01
 192.168.56.20 box02
-192.168.56.30 box02
+192.168.56.30 box03
 EOF'
 ```
 
