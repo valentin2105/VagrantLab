@@ -17,7 +17,7 @@ services:
   wordpress:
     image: reg.ntl.nc/proxy/library/wordpress:latest
     ports:
-      - 8080:80
+      - 80:80
     restart: always
     volumes:
       - wp_data:/var/www/html
