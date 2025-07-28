@@ -43,9 +43,6 @@ EOF'
 
 - `systemctl enable glusterd`
 
-- `gluster peer probe box01`
-
-- `gluster pool list`
 
 - `mkdir -p /gluster/vol01`
 
@@ -71,6 +68,8 @@ EOF'
 - `systemctl enable glusterd`
 
 - `gluster peer probe box01`
+
+- `gluster peer probe box02`
 
 - `gluster pool list`
 
