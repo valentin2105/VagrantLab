@@ -22,33 +22,13 @@ Récupérer ce token (complet) pour la suite
 
 ---
 
-- `vagrant ssh box01`
-
-(remplacer $NODE_TOKEN par votre token)
 
 - Sur box01 -> `vagrant ssh box01 -c "curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=\"agent --server https://192.168.56.1:6443 --token $NODE_TOKEN --flannel-iface eth1\" sh -s -"`
 
-- `exit`
-
----
-
-- `vagrant ssh box02`
-
-(remplacer $NODE_TOKEN par votre token)
 
 - Sur box02 -> `vagrant ssh box02 -c "curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=\"agent --server https://192.168.56.1:6443 --token $NODE_TOKEN --flannel-iface eth1\" sh -s -"`
 
-- `exit`
-
----
-
-- `vagrant ssh box03`
-
-(remplacer $NODE_TOKEN par votre token)
-
 - Sur box03 -> `vagrant ssh box03 -c "curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=\"agent --server https://192.168.56.1:6443 --token $NODE_TOKEN --flannel-iface eth1\" sh -s -"`
-
-- `exit`
 
 ---
 
