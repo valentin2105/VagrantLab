@@ -14,7 +14,9 @@
 
 - `cd /tmp/ && wget https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz && tar -zxvf helm-v3.16.2-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin/`
 
-- `cd - && sudo cat /var/lib/rancher/k3s/server/node-token`
+- `cd - `
+
+- `NODE_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)`
 
 Récupérer ce token (complet) pour la suite
 
@@ -24,7 +26,7 @@ Récupérer ce token (complet) pour la suite
 
 (remplacer $NODE_TOKEN par votre token)
 
-- Sur box01 -> `curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent --server https://192.168.56.1:6443 --token NODE_TOKEN --flannel-iface eth1" sh -s -`
+- Sur box01 -> `vagrant ssh box01 -c "curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=\"agent --server https://192.168.56.1:6443 --token $NODE_TOKEN --flannel-iface eth1\" sh -s -"`
 
 - `exit`
 
@@ -34,7 +36,7 @@ Récupérer ce token (complet) pour la suite
 
 (remplacer $NODE_TOKEN par votre token)
 
-- Sur box02 -> `curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent --server https://192.168.56.1:6443 --token NODE_TOKEN --flannel-iface eth1" sh -s -`
+- Sur box02 -> `vagrant ssh box02 -c "curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=\"agent --server https://192.168.56.1:6443 --token $NODE_TOKEN --flannel-iface eth1\" sh -s -"`
 
 - `exit`
 
@@ -44,7 +46,7 @@ Récupérer ce token (complet) pour la suite
 
 (remplacer $NODE_TOKEN par votre token)
 
-- Sur box03 -> `curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent --server https://192.168.56.1:6443 --token NODE_TOKEN --flannel-iface eth1" sh -s -`
+- Sur box03 -> `vagrant ssh box03 -c "curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=\"agent --server https://192.168.56.1:6443 --token $NODE_TOKEN --flannel-iface eth1\" sh -s -"`
 
 - `exit`
 
