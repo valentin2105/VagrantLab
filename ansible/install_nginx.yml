@@ -1,0 +1,15 @@
+- name: Install and start Nginx on box01
+  become: yes   # run tasks with sudo
+  tasks:
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Ensure nginx is running and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+
