@@ -1,4 +1,5 @@
 - name: Install and start Nginx on box01
+  hosts: all
   become: yes   # run tasks with sudo
   tasks:
     - name: Install nginx
