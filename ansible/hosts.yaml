@@ -1,6 +1,10 @@
 all:
-  hosts:
-    box01:
-    box02:
-    box03:
+  children:
+    webservers:
+      hosts:
+        box01:
+        box02:
+    dbservers:
+      hosts:
+        box03:
 
