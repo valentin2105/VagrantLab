@@ -1,0 +1,17 @@
+---
+- name: Install common packages on all hosts
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure common packages are installed
+      package:
+        name:
+          - git
+          - curl
+          - htop
+          - vim
+          - wget
+        state: present
+
+
+

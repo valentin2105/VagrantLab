@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="fr">
+        <head>
+                  <meta charset="utf-8">
+                    <title>Nginx {{ inventory_hostname }}</title>
+        </head>
+        <body>
+                  <h1>Bonjour depuis {{ inventory_hostname }} 👋</h1>
+                    <p>Déployé le {{ ansible_date_time.date }} à {{ ansible_date_time.time }}.</p>
+        </body>
+</html>
+
+

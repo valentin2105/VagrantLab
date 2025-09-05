@@ -1,0 +1,17 @@
+# Paquets requis (Debian 13)
+postgres_packages:
+  - postgresql
+  - postgresql-client
+  - python3-psycopg2
+
+pg_listen_addresses: "*"
+pg_port: 5432
+pg_allowed_cidrs:
+  - "0.0.0.0/0"             
+
+
+# DB & user applicatifs
+app_db_name: app01
+app_db_owner: app01
+
+

@@ -1,0 +1,7 @@
+# (généralement pas nécessaire pour ce flux simple, mais on garde le handler)
+- name: restart postgresql
+  service:
+    name: postgresql
+    state: restarted
+
+

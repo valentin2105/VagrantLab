@@ -1,0 +1,24 @@
+- name: Configure persistent IP and route with nmcli
+  hosts: all
+  become: yes
+  collections:
+    - community.general
+  tasks:
+    - name: Add secondary address 10.1.0.2/32 to eth0
+      community.general.nmcli:
+        conn_name: eth0
+        ifname: eth0
+        type: ethernet
+        ip4: 10.1.0.2/32
+        state: present
+
+    - name: Add static route to 1.2.3.4/32 via 10.1.0.2
+      community.general.nmcli:
+        conn_name: eth0
+        ifname: eth0
+        type: ethernet
+        routes4:
+          - "1.2.3.4/32 10.1.0.2"
+        state: present
+
+

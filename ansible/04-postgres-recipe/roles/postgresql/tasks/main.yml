@@ -1,0 +1,122 @@
+---
+# (1) Pré-requis : installer ACL pour éviter l'erreur become_user
+- name: Ensure ACL tooling is present
+  become: yes
+  ansible.builtin.apt:
+    name: acl
+    state: present
+    update_cache: yes
+
+# (2) Installer PostgreSQL + client + driver Python
+- name: Ensure PostgreSQL & dependencies are installed
+  become: yes
+  ansible.builtin.apt:
+    name: "{{ postgres_packages }}"
+    state: present
+    update_cache: yes
+
+# (3) Démarrer et activer PostgreSQL
+- name: Ensure PostgreSQL service is running and enabled
+  become: yes
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: yes
+
+# (4) Définir le mot de passe du superuser 'postgres'
+- name: Set postgres superuser password
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    name: postgres
+    password: "{{ vault_postgres_root_password }}"
+    role_attr_flags: "SUPERUSER"
+
+# (5) Créer la base applicative
+- name: Ensure application database exists
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_db:
+    name: "{{ app_db_name }}"
+    state: present
+
+# (6) Créer l’utilisateur applicatif
+- name: Ensure application user exists with password
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    name: "{{ app_db_owner }}"
+    password: "{{ vault_postgres_app_password }}"
+    role_attr_flags: "LOGIN"
+
+# (7) Accorder les privilèges à l’utilisateur sur la DB
+- name: Grant privileges on database to app user
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_privs:
+    db: "{{ app_db_name }}"
+    type: database
+    privs: ALL
+    roles: "{{ app_db_owner }}"
+    state: present
+
+# (8) Configurer listen_addresses (requiert restart)
+- name: Set listen_addresses
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_set:
+    name: listen_addresses
+    value: "{{ pg_listen_addresses }}"
+  register: set_listen
+
+# (9) Configurer port (requiert restart)
+- name: Set PostgreSQL port
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_set:
+    name: port
+    value: "{{ pg_port }}"
+  register: set_port
+
+# (10) Forcer scram-sha-256 (reload suffit)
+- name: Use scram-sha-256 for password_encryption
+  become: yes
+  become_user: postgres
+  community.postgresql.postgresql_set:
+    name: password_encryption
+    value: 'scram-sha-256'
+  register: set_pwenc
+
+# (11) Ajouter règles pg_hba (chemin fixe Debian 17)
+- name: Allow remote clients in pg_hba for app DB/user
+  become: yes
+  become_user: postgres
+  loop: "{{ pg_allowed_cidrs }}"
+  community.postgresql.postgresql_pg_hba:
+    dest: "/etc/postgresql/17/main/pg_hba.conf"
+    contype: host
+    databases: "{{ app_db_name }}"
+    users: "{{ app_db_owner }}"
+    source: "{{ item }}"
+    method: scram-sha-256
+    state: present
+  register: pg_hba_rules
+
+# (12a) Restart si paramètres nécessitant restart ont changé
+- name: Restart PostgreSQL if restart-required settings changed
+  become: yes
+  ansible.builtin.service:
+    name: postgresql
+    state: restarted
+  when: set_listen.changed or set_port.changed
+
+# (12b) Reload si seulement paramètres reload ou pg_hba ont changé
+- name: Reload PostgreSQL if reloadable settings changed
+  become: yes
+  ansible.builtin.service:
+    name: postgresql
+    state: reloaded
+  when: (not (set_listen.changed or set_port.changed)) and
+        (set_pwenc.changed or (pg_hba_rules is changed))
+
+

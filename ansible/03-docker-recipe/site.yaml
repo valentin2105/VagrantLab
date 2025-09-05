@@ -1,0 +1,4 @@
+- hosts: box02
+  become: yes
+  roles:
+    - docker

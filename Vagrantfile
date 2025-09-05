@@ -2,32 +2,17 @@ servers=[
   {
     :hostname => "box01",
     :ip => "192.168.56.10",
-    :box => "debian/bookworm64",
+    :box => "bento/debian-13",
     :ram => 2048,
     :cpu => 2
   },
   {
     :hostname => "box02",
     :ip => "192.168.56.20",
-    :box => "debian/bookworm64",
-    :ram => 2048,
-    :cpu => 2
-  },
-  {
-    :hostname => "box03",
-    :ip => "192.168.56.30",
-    :box => "debian/bookworm64",
+    :box => "bento/debian-13",
     :ram => 2048,
     :cpu => 2
   }
-
-#  {
-#    :hostname => "k8s",
-#    :ip => "192.168.56.50",
-#    :box => "debian/bookworm64",
-#    :ram => 4096,
-#    :cpu => 4
-#  }
 ]
 
 Vagrant.configure(2) do |config|

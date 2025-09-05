@@ -1,0 +1,30 @@
+- name: MikroTik routes — present without duplicates (no regex)
+  hosts: mikrotik
+  gather_facts: no
+  vars:
+    routes:
+      - { dst: "10.10.0.0/24",    gw: "192.168.88.2", comment: "ansible:lan10",  distance: 1 }
+      - { dst: "172.16.5.0/24",   gw: "192.168.88.2", comment: "ansible:siteA",  distance: 1 }
+      - { dst: "203.0.113.50/32", gw: "192.168.88.2", comment: "ansible:hostX", distance: 1 }
+
+  tasks:
+    - name: Check exact route exists (dst+gw+comment)
+      community.routeros.command:
+        commands:
+          - '/ip/route/print count-only where dst-address={{ item.dst }} and gateway~"{{ item.gw }}" and comment="{{ item.comment }}"'
+      loop: "{{ routes }}"
+      register: exact
+      changed_when: false
+      loop_control:
+        label: "{{ item.dst }} via {{ item.gw }}"
+
+    - name: Add missing route (remove any with same comment first)
+      community.routeros.command:
+        commands:
+          - '/ip/route/remove [find where comment="{{ item.item.comment }}"]'
+          - '/ip/route/add dst-address={{ item.item.dst }} gateway={{ item.item.gw }} comment="{{ item.item.comment }}" distance={{ item.item.distance | default(1) }}'
+      loop: "{{ exact.results }}"
+      when: (item.stdout[0] | trim | int) == 0
+      loop_control:
+        label: "ADD {{ item.item.dst }} via {{ item.item.gw }}"
+

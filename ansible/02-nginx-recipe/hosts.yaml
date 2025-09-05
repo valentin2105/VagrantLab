@@ -1,0 +1,6 @@
+all:
+  hosts:
+    box01: {}
+    box02: {}
+
+

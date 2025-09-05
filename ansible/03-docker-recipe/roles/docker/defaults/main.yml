@@ -1,0 +1,10 @@
+docker_apt_key_url: https://download.docker.com/linux/debian/gpg
+docker_apt_key_path: /etc/apt/keyrings/docker.asc
+docker_apt_repo: "deb [arch=amd64 signed-by={{ docker_apt_key_path }}] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+
+
+
+hello_container_name: hello-nginx
+hello_image: nginxdemos/hello
+hello_ports:
+  - "8080:80"

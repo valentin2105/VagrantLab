@@ -1,0 +1,4 @@
+- hosts: box01
+  become: yes
+  roles:
+    - nginx

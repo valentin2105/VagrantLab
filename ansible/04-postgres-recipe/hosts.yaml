@@ -1,0 +1,8 @@
+all:
+  hosts:
+    box01: {}
+  children:
+    dbservers:
+      hosts:
+        box02: {}
+
