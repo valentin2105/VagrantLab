@@ -2,6 +2,7 @@
 - name: Install common packages on all hosts
   hosts: all
   become: yes
+  gather_facts: no
   tasks:
     - name: Ensure common packages are installed
       package:

@@ -1,0 +1,6 @@
+all:
+  hosts:
+    debian01.orb.local: {}
+    debian02.orb.local: {}
+
+
