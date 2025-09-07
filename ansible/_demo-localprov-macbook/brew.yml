@@ -1,0 +1,70 @@
+---
+- name: Setup macOS dev machine with Homebrew
+  hosts: local
+  gather_facts: false
+
+  vars_files:
+    - vars/packages.yml
+  vars:
+    user_home: "{{ lookup('env','HOME') }}"
+
+  pre_tasks:
+    - name: Find Homebrew binary (arm64 default)
+      ansible.builtin.stat:
+        path: /opt/homebrew/bin/brew
+      register: brew_arm
+
+    - name: Find Homebrew binary (Intel fallback)
+      ansible.builtin.stat:
+        path: /usr/local/bin/brew
+      register: brew_x86
+
+    - name: Set brew_bin fact
+      ansible.builtin.set_fact:
+        brew_bin: >-
+          {{ '/opt/homebrew/bin/brew' if brew_arm.stat.exists
+             else ('/usr/local/bin/brew' if brew_x86.stat.exists else None) }}
+
+    - name: Install Homebrew if missing (non-interactive)
+      when: brew_bin is none
+      ansible.builtin.shell: |
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      args:
+        creates: /opt/homebrew/bin/brew
+
+    - name: Refresh brew_bin after install
+      when: brew_bin is none
+      ansible.builtin.set_fact:
+        brew_bin: >-
+          {{ '/opt/homebrew/bin/brew' if (lookup('ansible.builtin.pipe','test -x /opt/homebrew/bin/brew && echo yes')|default('')|trim == 'yes')
+             else '/usr/local/bin/brew' }}
+
+  tasks:
+    - name: Update Homebrew
+      community.general.homebrew:
+        update_homebrew: true
+        path: "{{ brew_bin }}"
+
+    - name: Install formulae
+      community.general.homebrew:
+        name: "{{ brew_formulae }}"
+        state: present
+        path: "{{ brew_bin }}"
+
+    - name: Install casks
+      community.general.homebrew_cask:
+        name: "{{ brew_casks }}"
+        state: present
+        greedy: false
+        accept_external_apps: true
+        path: "{{ brew_bin }}"
+
+    - name: (Optional) Enable fzf key bindings & completion (idempotent-ish)
+      ansible.builtin.shell: |
+        "{{ brew_bin }}" --prefix fzf | xargs -I {} bash -lc '{}'/install --key-bindings --completion --no-bash --no-fish
+      args:
+        creates: "{{ user_home }}/.fzf.zsh"
+      when:
+        - "'fzf' in brew_formulae"
+
+
