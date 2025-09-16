@@ -12,7 +12,14 @@ servers=[
     :box => "bento/debian-13",
     :ram => 2048,
     :cpu => 2
-  }
+  },
+  {
+    :hostname => "box03",
+    :ip => "192.168.56.30",
+    :box => "bento/debian-13",
+    :ram => 2048,
+    :cpu => 2
+  },
 ]
 
 Vagrant.configure(2) do |config|
