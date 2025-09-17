@@ -93,8 +93,9 @@ curl -v 192.168.56.200
 
 echo "192.168.56.200 demo-website.nc" | sudo tee -a /etc/hosts
 
+sudo apt install jq
 
-curl http://demo-website.nc/
+curl http://demo-website.nc/ | jq 
 ```
 
 
