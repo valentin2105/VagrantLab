@@ -122,6 +122,7 @@ helm upgrade --install cilium cilium/cilium -n kube-system --create-namespace \
   --set hubble.enabled=true \
   --set hubble.relay.enabled=true \
   --set hubble.ui.enabled=true \
+  --set bandwidthManager.enabled=true \
   --set cni.binPath=/usr/lib/cni
 
 
