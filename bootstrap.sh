@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "nameserver 8.8.8.8" | sudo tee    /etc/resolv.conf
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
 echo "nameserver 1.1.1.1" | sudo tee -a /etc/resolv.conf
 
 export DEBIAN_FRONTEND=noninteractive
@@ -19,8 +19,18 @@ mirrors:
       - "https://reg.ntl.nc/v2/proxy/"
 EOF
 
+cat >>/etc/hosts <<'EOF'
+192.168.56.10 box01
+192.168.56.20 box02
+192.168.56.30 box03
+192.168.56.40 box04
+192.168.56.50 box05
+EOF
 
+swapoff -a
+sed -ri 's/^\s*([^#].*\s+swap\s+)/#\1/' /etc/fstab # commente la ligne swap s’il y en a une
 
+sudo sed -i '/^127\.0\.2\.1\s\+box/d' /etc/hosts
 
 ####################
 ## Install Docker ##

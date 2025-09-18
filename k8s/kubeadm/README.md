@@ -5,16 +5,7 @@
 > Preparation
 
 ```
-cat >> /etc/hosts <<'EOF'
-192.168.56.10 box01
-192.168.56.20 box02
-192.168.56.30 box03
-192.168.56.40 box04
-192.168.56.50 box05
-EOF
-
-swapoff -a
-sed -ri 's/^\s*([^#].*\s+swap\s+)/#\1/' /etc/fstab   # commente la ligne swap s’il y en a une
+sudo su
 
 tee /etc/modules-load.d/k8s.conf <<'EOF'
 overlay
@@ -31,8 +22,6 @@ EOF
 sysctl --system
 
 
-sudo sed -i '/^127\.0\.2\.1\s\+box/d' /etc/hosts
-
 reboot
 
 ```
@@ -40,6 +29,7 @@ reboot
 > Containerd
 
 ```
+sudo su
 apt-get update
 apt-get install -y containerd containernetworking-plugins
 
@@ -142,6 +132,7 @@ kubeadm token create --print-join-command
 ### Sur Box02,03,04
 
 ```
+sudo su 
 kubeadm join 192.168.56.10:6443 --token ..... (previous output)
 
 ```
