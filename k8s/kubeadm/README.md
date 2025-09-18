@@ -11,6 +11,7 @@ tee /etc/modules-load.d/k8s.conf <<'EOF'
 overlay
 br_netfilter
 EOF
+
 modprobe overlay
 modprobe br_netfilter
 
@@ -19,13 +20,13 @@ net.bridge.bridge-nf-call-iptables = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward = 1
 EOF
+
 sysctl --system
 ```
 
 > Containerd
 
 ```
-sudo su
 apt-get update
 apt-get install -y containerd containernetworking-plugins
 
@@ -105,6 +106,9 @@ helm upgrade --install cilium cilium/cilium -n kube-system --create-namespace \
   --set ipam.operator.clusterPoolIPv4PodCIDRList="{10.244.0.0/16}" \
   --set l2announcements.enabled=true \
   --set externalIPs.enabled=true \
+  --set hubble.enabled=true \
+  --set hubble.relay.enabled=true \
+  --set hubble.ui.enabled=true \
   --set cni.binPath=/usr/lib/cni
 
 
