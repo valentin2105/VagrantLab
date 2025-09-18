@@ -5,12 +5,11 @@ echo "nameserver 1.1.1.1" | sudo tee -a /etc/resolv.conf
 
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
-sudo apt-get -y install ca-certificates curl gnupg open-iscsi git conntrackd conntrack chrony
+sudo apt-get -y install ca-certificates curl gnupg open-iscsi git conntrackd conntrack
 sudo apt-get -y upgrade
 sudo systemctl start iscsid
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo apt-get -y autoremove
-sudo systemctl enable --now chrony
 
 mkdir -p /etc/rancher/k3s
 cat <<EOF >>/etc/rancher/k3s/registries.yaml

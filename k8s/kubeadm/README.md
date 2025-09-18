@@ -41,7 +41,8 @@ sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.to
 sed -i 's#sandbox_image = ".*pause:.*"#sandbox_image = "registry.k8s.io/pause:3.10.1"#'   /etc/containerd/config.toml
 
 systemctl daemon-reload
-systemctl enable --now containerd
+systemctl enable containerd
+systemctl restart containerd
 
 cat >/etc/crictl.yaml <<EOF
 runtime-endpoint: unix:///run/containerd/containerd.sock
@@ -96,8 +97,10 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 > Cilium
 
 ```
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-bash get_helm.sh
+# Install Helm
+curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+apt-get update && sudo apt-get install helm
 
 
 helm repo add cilium https://helm.cilium.io
