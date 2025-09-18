@@ -36,6 +36,7 @@ containerd config default | tee /etc/containerd/config.toml >/dev/null
 
 # Bascule en systemd cgroups (ligne [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options])
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+sed -i 's#sandbox_image = ".*pause:.*"#sandbox_image = "registry.k8s.io/pause:3.10.1"#'   /etc/containerd/config.toml
 
 systemctl daemon-reload
 systemctl enable --now containerd
