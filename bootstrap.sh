@@ -20,16 +20,20 @@ mirrors:
 EOF
 
 cat >>/etc/hosts <<'EOF'
-192.168.56.10 box01
-192.168.56.20 box02
-192.168.56.30 box03
-192.168.56.40 box04
-192.168.56.50 box05
+192.168.56.10  box01
+192.168.56.20  box02
+192.168.56.30  box03
+192.168.56.40  box04
+192.168.56.50  box05
+192.168.56.60  box06
+192.168.56.70  box07
+192.168.56.80  box08
+192.168.56.100 nfs-server
 EOF
 
 swapoff -a
-sed -ri 's/^\s*([^#].*\s+swap\s+)/#\1/' /etc/fstab # commente la ligne swap s’il y en a une
 
+sed -ri 's/^\s*([^#].*\s+swap\s+)/#\1/' /etc/fstab
 sudo sed -i '/^127\.0\.2\.1\s\+box/d' /etc/hosts
 
 ####################

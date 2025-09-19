@@ -29,9 +29,9 @@ exportfs -v
 > Test sur box03 
 
 ```
-showmount -e 192.168.56.50
+showmount -e 192.168.56.100
 mkdir -p /mnt/nfs-test
-mount -t nfs 192.168.56.50:/srv/nfs/kubedata /mnt/nfs-test
+mount -t nfs 192.168.56.100:/srv/nfs/kubedata /mnt/nfs-test
 touch /mnt/nfs-test/OK
 umount /mnt/nfs-test
 ```
@@ -51,7 +51,7 @@ kubectl create ns nfs-provisioner
 helm upgrade --install nfs-subdir-external-provisioner \
   nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
   --namespace nfs-provisioner \
-  --set nfs.server=192.168.56.50 \
+  --set nfs.server=192.168.56.100 \
   --set nfs.path=/srv/nfs/kubedata \
   --set storageClass.name=nfs-client \
   --set storageClass.defaultClass=true \

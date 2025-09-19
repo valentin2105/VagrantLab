@@ -18,10 +18,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret \
   -o jsonpath='{.data.password}' | base64 -d; echo
 
 
-echo "192.168.56.200 argocd.k8s.localhost" | sudo tee -a /etc/hosts
+echo "192.168.56.200 argocd.k8s.local" | sudo tee -a /etc/hosts
 
 ```
 
 
-https://argocd.k8s.localhost
+https://argocd.k8s.local
 

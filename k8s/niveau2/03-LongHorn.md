@@ -10,8 +10,7 @@ watch kubectl -n longhorn-system get pod
 ```
 
 ```
-USER=<USERNAME_HERE>; PASSWORD=<PASSWORD_HERE>; echo "${USER}:$(openssl passwd -stdin -apr1 <<< ${PASSWORD})" >> auth
-
+USER=admin; PASSWORD=admin; echo "${USER}:$(openssl passwd -stdin -apr1 <<< ${PASSWORD})" >> auth
 
 kubectl -n longhorn-system create secret generic basic-auth --from-file=auth
 
@@ -37,7 +36,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: longhorn.k8s.local
+    http:
       paths:
       - pathType: Prefix
         path: "/"
@@ -49,5 +49,8 @@ spec:
 EOF
 
 
-kubectl -n longhorn-system apply -f longhorn-ingress.yml
+echo "192.168.56.200 longhorn.k8s.local" | sudo tee -a /etc/hosts
+
 ```
+
+http://longhorn.k8s.local

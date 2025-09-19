@@ -39,6 +39,16 @@ containerd config default | tee /etc/containerd/config.toml >/dev/null
 # Bascule en systemd cgroups (ligne [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options])
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
 sed -i 's#sandbox_image = ".*pause:.*"#sandbox_image = "registry.k8s.io/pause:3.10.1"#'   /etc/containerd/config.toml
+sed -i '/\[plugins\."io.containerd.grpc.v1.cri"\.registry\]/,/\[/ s#^\(\s*config_path = \).*#\1"/etc/containerd/certs.d"#' /etc/containerd/config.toml
+mkdir -p /etc/containerd/certs.d/docker.io
+tee /etc/containerd/certs.d/docker.io/hosts.toml >/dev/null <<'EOF'
+server = "https://registry-1.docker.io"
+
+# Use Harbor Proxy Cache under a sub-path; treat that path as the API base
+[host."https://reg.ntl.nc/v2/proxy"]
+  capabilities = ["pull", "resolve"]
+  override_path = true
+EOF
 
 systemctl daemon-reload
 systemctl enable containerd
@@ -149,4 +159,11 @@ kubeadm token create --print-join-command
 sudo su 
 kubeadm join 192.168.56.10:6443 --token ..... (previous output)
 
+```
+
+
+### To add another Master : 
+
+```
+kubeadm token create --print-join-command --certificate-key $(kubeadm init phase upload-certs --upload-certs | tail -n1)
 ```
