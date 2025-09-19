@@ -24,8 +24,6 @@ systemctl enable --now nfs-server
 exportfs -v
 
 ```
-```
-```
 
 
 > Test sur box03 
@@ -39,8 +37,6 @@ umount /mnt/nfs-test
 ```
 
 
-
-
 > nfs-subdir-external-provisioner
 
 
@@ -48,7 +44,7 @@ umount /mnt/nfs-test
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 helm repo update
 
-# Namespace dédié (optionnel mais propre)
+# Namespace dédié
 kubectl create ns nfs-provisioner
 
 # Installation : pointe vers box05 et le chemin exporté
@@ -66,12 +62,6 @@ helm upgrade --install nfs-subdir-external-provisioner \
 kubectl -n nfs-provisioner get pods
 kubectl get sc
 ```
-```
-```
-```
-```
-
-
 
 
 > Test
@@ -112,16 +102,14 @@ EOF
 
 kubectl -n nfs-test get pvc,pod
 
+```
 
-
-```
-```
-```
 
 
 > Check sur le nfs-server
 
+```
 ls -R /srv/nfs/kubedata
 cat /srv/nfs/kubedata/*/hello.txt
 
-
+```

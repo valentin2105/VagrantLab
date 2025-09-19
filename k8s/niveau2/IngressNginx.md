@@ -30,7 +30,7 @@ EOF
 
 
 
-
+```
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
@@ -67,7 +67,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: demo-website.nc
+  - host: demo-site.k8s.local
     http:
       paths:
       - path: /
@@ -79,9 +79,7 @@ spec:
               number: 80
 EOF
 
-
 ```
-
 
 ## Sur votre machine Ubuntu :
 
@@ -90,11 +88,11 @@ sudo ip route add 192.168.56.200/32 via 192.168.56.10
 
 curl -v 192.168.56.200
 
-echo "192.168.56.200 demo-website.nc" | sudo tee -a /etc/hosts
+echo "192.168.56.200 demo-site.k8s.local" | sudo tee -a /etc/hosts
 
 sudo apt install jq
 
-curl http://demo-website.nc/ | jq 
+curl http://demo-site.k8s.local/ | jq 
 ```
 
 
