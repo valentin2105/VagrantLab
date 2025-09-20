@@ -3,8 +3,8 @@ servers=[
     :hostname => "box01",
     :ip => "192.168.56.10",
     :box => "bento/debian-13",
-    :ram => 2048,
-    :cpu => 2
+    :ram => 3072,
+    :cpu => 3
   },
   {
     :hostname => "box02",
@@ -27,13 +27,13 @@ servers=[
     :ram => 2048,
     :cpu => 2
   },
-  {
-    :hostname => "nfs-server",
-    :ip => "192.168.56.50",
-    :box => "bento/debian-13",
-    :ram => 2048,
-    :cpu => 2
-  },
+#  {
+#    :hostname => "nfs-server",
+#    :ip => "192.168.56.50",
+#    :box => "bento/debian-13",
+#    :ram => 2048,
+#    :cpu => 2
+#  },
 ]
 
 Vagrant.configure(2) do |config|
