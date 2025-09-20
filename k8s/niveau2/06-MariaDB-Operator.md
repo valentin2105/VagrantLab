@@ -37,5 +37,36 @@ kubectl get grants
 
 ```
 sudo ip route add 192.168.56.201/32 via 192.168.56.10
-mysql -u user -p -h 192.168.56.201
+mysql -u user -p -h 192.168.56.201  
+# MariaDB11!
+```
+
+# S3-Backup
+```
+kubectl create -f backup-s3.yaml
+kubectl get cronjob,job
+
+# Check on minio
+```
+
+# Galera 
+
+```
+kubectl create -f mariadb-galera.yaml
+sudo ip route add 192.168.56.202/32 via 192.168.56.10
+
+
+kubectl get mariadb
+kubectl get statefulsets
+kubectl get pod
+kubectl get svc,ep
+
+mysql -u root -p -h 192.168.56.202
+# MariaDB11!
+
+SHOW STATUS LIKE 'wsrep_incoming_addresses';
+
+SHOW STATUS LIKE 'wsrep_cluster_size';
+
+SHOW STATUS LIKE 'wsrep_local_state_comment';
 ```

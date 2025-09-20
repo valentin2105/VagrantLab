@@ -1,0 +1,16 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Database
+metadata:
+  name: database
+spec:
+  # If you want the database to be created with a different name than the resource name
+  # name: my-logical-database
+  mariaDbRef:
+    name: mariadb
+  characterSet: utf8
+  collate: utf8_general_ci
+  # Delete the resource in the database whenever the CR gets deleted.
+  # Alternatively, you can specify Skip in order to omit deletion.
+  cleanupPolicy: Delete
+  requeueInterval: 10h
+  retryInterval: 30s

@@ -1,0 +1,46 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: mariadb-galera
+spec:
+  rootPasswordSecretKeyRef:
+    name: mariadb
+    key: root-password
+
+  username: mariadb
+  passwordSecretKeyRef:
+    name: mariadb-password
+    key: password
+    generate: true
+  database: mariadb
+
+
+  myCnf: |
+    [mariadb]
+    bind-address=*
+    default_storage_engine=InnoDB
+    binlog_format=row
+    innodb_autoinc_lock_mode=2
+    innodb_buffer_pool_size=1600M
+    max_allowed_packet=256M
+    
+  storage:
+    size: 1Gi
+
+  replicas: 3
+
+  galera:
+    enabled: true
+
+  service:
+    type: LoadBalancer
+
+  primaryService:
+    type: LoadBalancer
+
+  secondaryService:
+    type: LoadBalancer
+
+  metrics:
+    enabled: true
+

@@ -1,0 +1,39 @@
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hubble
+  namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"   # websockets
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"        # keep HTTP in lab
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: hubble.k8s.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hubble-ui
+            port:
+              number: 80
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: hubble-ui
+            port:
+              number: 80
+      - path: /socket.io
+        pathType: Prefix
+        backend:
+          service:
+            name: hubble-ui
+            port:
+              number: 80
+
