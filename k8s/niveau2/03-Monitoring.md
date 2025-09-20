@@ -2,7 +2,7 @@
 
 ## MetricServer 
 
-
+```
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 kubectl -n kube-system patch deploy metrics-server --type=json -p='[
@@ -13,10 +13,11 @@ kubectl -n kube-system patch deploy metrics-server --type=json -p='[
 kubectl -n kube-system rollout status deploy/metrics-server
 kubectl top nodes
 kubectl top pods -A
-
+```
 
 ## Grafana / Prometheus
 
+```
 kubectl create namespace monitoring
 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -39,7 +40,7 @@ helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheu
 
 
   echo "192.168.56.200 grafana.k8s.local prometheus.k8s.local alertmanager.k8s.local" | sudo tee -a /etc/hosts
-
+```
 
 
 http://grafana.k8s.local

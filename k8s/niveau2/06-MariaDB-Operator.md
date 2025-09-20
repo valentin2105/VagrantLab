@@ -13,11 +13,11 @@ helm install --namespace mariadb-operator \
 ```
 git clone https://github.com/mariadb-operator/mariadb-operator.git --depth 1
 
-cd mariadb-operator/
+cd k8s/niveau2
 
 
-kubectl apply -f examples/manifests/config
-kubectl apply -f examples/manifests/mariadb.yaml
+kubectl apply -f mariadb-operator/config/
+kubectl apply -f mariadb-operator/mariadb.yaml
 
 kubectl get mariadbs
 kubectl get statefulsets
@@ -25,9 +25,9 @@ kubectl get pod
 kubectl get services
 
 
-kubectl apply -f examples/manifests/database.yaml
-kubectl apply -f examples/manifests/user.yaml
-kubectl apply -f examples/manifests/grant.yaml
+kubectl apply -f mariadb-operator/database.yaml
+kubectl apply -f mariadb-operator/user.yaml
+kubectl apply -f mariadb-operator/grant.yaml
 
 
 kubectl get databases
@@ -41,9 +41,9 @@ mysql -u user -p -h 192.168.56.201
 # MariaDB11!
 ```
 
-# S3-Backup
+## S3-Backup
 ```
-kubectl create -f backup-s3.yaml
+kubectl create -f mariadb-operator/backup-s3.yaml
 kubectl get cronjob,job
 
 # Check on minio
@@ -52,7 +52,7 @@ kubectl get cronjob,job
 # Galera 
 
 ```
-kubectl create -f mariadb-galera.yaml
+kubectl create -f mariadb-operator/mariadb-galera.yaml
 sudo ip route add 192.168.56.202/32 via 192.168.56.10
 
 
