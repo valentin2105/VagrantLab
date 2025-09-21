@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: demoapp}
+spec:
+  selector: {matchLabels: {app: demoapp}}
+  replicas: 2
+  template:
+    metadata: {labels: {app: demoapp}}
+    spec:
+      containers:
+      - name: demoapp
+        image: reg.ntl.nc/formation/olivier:latest
+        ports: [{containerPort: 5000}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: demoapp}
+spec:
+  selector: {app: demoapp}
+  ports: [{protocol: TCP, port: 80, targetPort: 5000}]
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: {name: demoapp}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: demoapp.k8s.local
+    http:
+      paths:
+      - {pathType: Prefix, path: "/", backend: {service: {name: demoapp, port: {number: 80}}}}
