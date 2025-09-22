@@ -61,6 +61,20 @@ kubectl rollout status deploy/nginx
 kubectl exec deploy/nginx -- sh -c 'wget -qO- localhost' 
 
 ```
+## Setup Minio for Longhorn 
+
+```
+kubectl -n longhorn-system create secret generic longhorn-minio \
+  --from-literal=AWS_ACCESS_KEY_ID='admin' \
+  --from-literal=AWS_SECRET_ACCESS_KEY='SuPeRmInIoPaSsW0rD' \
+  --from-literal=AWS_ENDPOINTS='http://minio.minio.svc.cluster.local:9000'
+
+helm upgrade longhorn longhorn/longhorn -n longhorn-system --reuse-values \
+  --set defaultBackupStore.backupTarget="s3://longhorn@us-east-1/" \
+  --set defaultBackupStore.backupTargetCredentialSecret="longhorn-minio"
+
+```
+
 ## Backup it
 
 > Sur l'UI Longhorn, lancer un full backup du volume
