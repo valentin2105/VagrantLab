@@ -14,12 +14,12 @@ helm upgrade --install minio bitnami/minio -n minio \
   --set auth.rootPassword='SuPeRmInIoPaSsW0rD' \
   --set ingress.enabled=true \
   --set ingress.ingressClassName=nginx \
-  --set ingress.hostname=minio.k8s.localhost \
+  --set ingress.hostname=minio.k8s.local \
   --set console.enabled=true \
   --set persistence.storageClass=nfs-client \
   --set console.ingress.enabled=true \
   --set console.ingress.ingressClassName=nginx \
-  --set console.ingress.hostname=minio-console.k8s.localhost
+  --set console.ingress.hostname=minio-console.k8s.local
 ```
 
 
