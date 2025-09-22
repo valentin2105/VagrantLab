@@ -11,7 +11,6 @@ helm install --namespace mariadb-operator \
 ```
 
 ```
-git clone https://github.com/mariadb-operator/mariadb-operator.git --depth 1
 
 cd k8s/niveau2
 
