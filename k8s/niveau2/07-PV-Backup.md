@@ -95,6 +95,7 @@ kubectl delete pvc/nginx-data
 
 Name: `nginx-restore`
 
+> Sur le volume restauré, cliquer "Créer PV/PVC" et nommer le PVC "nginx-data-restore"
 
 ```
 cat <<'EOF' | kubectl apply -f -
