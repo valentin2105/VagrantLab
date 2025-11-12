@@ -4,9 +4,9 @@
 
 > Preparation
 
-```
-sudo su
+`sudo su`
 
+```
 tee /etc/modules-load.d/k8s.conf <<'EOF'
 overlay
 br_netfilter
@@ -27,6 +27,7 @@ sysctl --system
 ```
 
 > Containerd
+
 
 ```
 apt-get update
