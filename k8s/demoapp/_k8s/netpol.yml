@@ -19,25 +19,32 @@ spec:
         - protocol: TCP
           port: 6379
 ---
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
 metadata:
-  name: allow-ingress-to-demoapp
+  name: allow-ingress-nginx-to-demoapp
   namespace: demoapp
 spec:
-  podSelector:
+  endpointSelector:
     matchLabels:
       app: demoapp
-  policyTypes:
-    - Ingress
   ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: ingress-nginx
-          podSelector:
-            matchLabels:
-              app.kubernetes.io/name: ingress-nginx
-      ports:
-        - protocol: TCP
-          port: 5000
+    # 1) Autorise les pods ingress-nginx (namespace -> pods)
+    - fromEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: ingress-nginx
+            k8s:app.kubernetes.io/name: ingress-nginx
+      toPorts:
+        - ports:
+            - port: "5000"
+              protocol: TCP
+    # 2) Autorise le trafic venant du host (ingress en hostNetwork/hostPort)
+    - fromEntities:
+        - host
+        - remote-node
+      toPorts:
+        - ports:
+            - port: "5000"
+              protocol: TCP
+
+

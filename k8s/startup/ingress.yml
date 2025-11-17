@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: nginx-hello
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   rules:
-  - host: "foo.bar.com"
+  - host: "nginx-demo.k8s.local"
     http:
       paths:
       - pathType: Prefix

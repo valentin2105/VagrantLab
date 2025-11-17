@@ -16,3 +16,5 @@ echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
 
 
 echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >>~/.bashrc
+
+source ~/.bashrc
