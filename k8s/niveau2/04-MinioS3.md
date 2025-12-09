@@ -19,7 +19,11 @@ helm upgrade --install minio bitnami/minio -n minio \
   --set persistence.storageClass=nfs-client \
   --set console.ingress.enabled=true \
   --set console.ingress.ingressClassName=nginx \
-  --set console.ingress.hostname=minio-console.k8s.local
+  --set console.ingress.hostname=minio-console.k8s.local \
+  --set image.repository="bitnamilegacy/minio"  \
+  --set image.tag="2025.3.12-debian-12-r0" \
+  --set console.image.repository=bitnamilegacy/minio-object-browser \
+  --set console.image.tag=2.0.2-debian-12-r0
 ```
 
 
@@ -35,5 +39,7 @@ kubectl -n minio get pods,svc,ingress
 ####  - Console :    http://minio-console.k8s.local
 ####  - S3 API :     http://minio.k8s.local
 
+Login : admin
+Password: SuPeRmInIoPaSsW0rD
 
 > Create `backups` and `longhorn` buckets.
