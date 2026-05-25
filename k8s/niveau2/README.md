@@ -103,6 +103,7 @@ helm repo update
 helm upgrade --install cilium cilium/cilium -n kube-system --create-namespace \
   --set kubeProxyReplacement=true \
   --set k8sServiceHost=192.168.56.10 \
+  --set cni.binPath=/usr/lib/cni \
   --set k8sServicePort=6443 \
   --set routingMode=native \
   --set autoDirectNodeRoutes=true \
