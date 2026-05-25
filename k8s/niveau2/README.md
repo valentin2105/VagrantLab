@@ -2,34 +2,11 @@
 
 ### Sur chaque Box
 
-> Preparation
-
-`sudo su`
-
-```
-tee /etc/modules-load.d/k8s.conf <<'EOF'
-overlay
-br_netfilter
-EOF
-
-modprobe overlay
-modprobe br_netfilter
-
-tee /etc/sysctl.d/99-kubernetes-cri.conf <<'EOF'
-net.bridge.bridge-nf-call-iptables = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.ipv4.ip_forward = 1
-net.ipv4.conf.all.rp_filter = 0
-net.ipv4.conf.default.rp_filter = 0
-EOF
-
-sysctl --system
-```
-
 > Containerd
 
 
 ```
+sudo su
 apt-get update
 apt-get install -y containerd containernetworking-plugins
 
@@ -38,7 +15,7 @@ mkdir -p /etc/containerd
 containerd config default | tee /etc/containerd/config.toml >/dev/null
 
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
-sed -i 's#sandbox_image = ".*pause:.*"#sandbox_image = "registry.k8s.io/pause:3.10.1"#'   /etc/containerd/config.toml
+sed -i 's#sandbox_image = ".*pause:.*"#sandbox_image = "registry.k8s.io/pause:3.10.2"#'   /etc/containerd/config.toml
 
 sed -i '/\[plugins\."io.containerd.grpc.v1.cri"\.registry\]/,/\[/ s#^\(\s*config_path = \).*#\1"/etc/containerd/certs.d"#' /etc/containerd/config.toml
 mkdir -p /etc/containerd/certs.d/docker.io
@@ -61,6 +38,8 @@ image-endpoint: unix:///run/containerd/containerd.sock
 timeout: 10
 EOF
 
+crictl ps
+
 ```
 
 > Kubeadm / Kubelet
@@ -69,7 +48,7 @@ EOF
 apt-get update
 apt-get install -y apt-transport-https ca-certificates curl gpg
 
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key \
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key \
   | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /' \
@@ -117,7 +96,6 @@ apt-get update && sudo apt-get install helm
 helm repo add cilium https://helm.cilium.io
 helm repo update
 
-
 helm upgrade --install cilium cilium/cilium -n kube-system --create-namespace \
   --set kubeProxyReplacement=true \
   --set k8sServiceHost=192.168.56.10 \
@@ -130,12 +108,12 @@ helm upgrade --install cilium cilium/cilium -n kube-system --create-namespace \
   --set ipam.operator.clusterPoolIPv4PodCIDRList="{10.244.0.0/16}" \
   --set l2announcements.enabled=true \
   --set externalIPs.enabled=true \
+  --set k8sClientRateLimit.qps=50 \
+  --set k8sClientRateLimit.burst=200 \
   --set hubble.enabled=true \
   --set hubble.relay.enabled=true \
   --set hubble.ui.enabled=true \
-  --set bandwidthManager.enabled=true \
-  --set cni.binPath=/usr/lib/cni
-
+  --set bandwidthManager.enabled=true
 
 
 kubectl -n kube-system rollout status ds/cilium
@@ -143,7 +121,6 @@ kubectl -n kube-system exec ds/cilium -- cilium status
 
 # CoreDNS should come up now
 kubectl -n kube-system get pods -l k8s-app=kube-dns
-
 
 ```
 
@@ -158,7 +135,7 @@ kubeadm token create --print-join-command
 
 ```
 sudo su 
-kubeadm join 192.168.56.10:6443 --token ..... (previous output)
+kubeadm join 192.168.56.10:6443 --token ..... (Le tokken récupéré sur le master)
 
 ```
 
