@@ -38,6 +38,10 @@ image-endpoint: unix:///run/containerd/containerd.sock
 timeout: 10
 EOF
 
+wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.36.0/crictl-v1.36.0-linux-amd64.tar.gz
+tar -zxvf crictl-v1.36.0-linux-amd64.tar.gz
+mv crictl /usr/local/bin/
+
 crictl ps
 
 ```
