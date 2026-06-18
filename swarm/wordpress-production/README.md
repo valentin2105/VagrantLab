@@ -67,4 +67,8 @@
 - `mount.glusterfs localhost:/vol01 /mnt`
 
 
+## Exercice : 
 
+- Modifier le docker-compose.yml afin d'exposer le Wordpress avec Traefik sous le nom `wordpress.swarm.localhost`
+- Déployer le Wordpress avec le fichier docker-compose.yml
+- Scaler le service WP à 3 replicas
