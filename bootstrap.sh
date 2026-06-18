@@ -13,10 +13,10 @@ echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 # Packages de base
 ############################################
 apt-get update
-apt-get install -y ca-certificates curl gnupg open-iscsi git conntrackd conntrack nfs-common
+apt-get install -y ca-certificates curl gnupg open-iscsi git conntrackd conntrack nfs-common glusterfs-server
 
-apt-get -y -o Dpkg::Options::="--force-confdef" \
-            -o Dpkg::Options::="--force-confold" upgrade
+systemctl start glusterd
+systemctl enable glusterd
 
 systemctl start iscsid
 install -m 0755 -d /etc/apt/keyrings
