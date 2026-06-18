@@ -8,19 +8,6 @@
 
 - `sudo su`
 
-```
-bash -c 'cat <<EOF >> /etc/hosts
-192.168.56.10 box01
-192.168.56.20 box02
-192.168.56.30 box03
-EOF'
-```
-- `apt-get -y install glusterfs-server`
-
-- `systemctl start glusterd`
-
-- `systemctl enable glusterd`
-
 - `mkdir -p /gluster/vol01`
 
 ## box02
@@ -28,21 +15,6 @@ EOF'
 - `vagrant ssh box02`
 
 - `sudo su`
-
-```
-bash -c 'cat <<EOF >> /etc/hosts
-192.168.56.10 box01
-192.168.56.20 box02
-192.168.56.30 box03
-EOF'
-```
-
-- `apt-get -y install glusterfs-server`
-
-- `systemctl start glusterd`
-
-- `systemctl enable glusterd`
-
 
 - `mkdir -p /gluster/vol01`
 
@@ -52,20 +24,6 @@ EOF'
 - `vagrant ssh box03`
 
 - `sudo su`
-
-```
-bash -c 'cat <<EOF >> /etc/hosts
-192.168.56.10 box01
-192.168.56.20 box02
-192.168.56.30 box03
-EOF'
-```
-
-- `apt-get -y install glusterfs-server`
-
-- `systemctl start glusterd`
-
-- `systemctl enable glusterd`
 
 - `gluster peer probe box01`
 
