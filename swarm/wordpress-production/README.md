@@ -109,16 +109,4 @@ EOF'
 - `mount.glusterfs localhost:/vol01 /mnt`
 
 
-## PC Formation
 
-- `sudo su`
-
-- `apt-get -y install haproxy`
-
-- `cp haproxy.cfg /etc/haproxy/haproxy.cfg`
-
-- `systemctl start haproxy && systemctl enable haproxy`
-
-- `echo "127.0.0.1 supersite.localhost" >> /etc/hosts`
-
-> stats is available at http://supersite.localhost:8001/
