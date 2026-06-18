@@ -3,8 +3,8 @@ servers=[
     :hostname => "box01",
     :ip => "192.168.56.10",
     :box => "bento/debian-13",
-    :ram => 3072,
-    :cpu => 3
+    :ram => 2048,
+    :cpu => 2
   },
   {
     :hostname => "box02",
@@ -16,13 +16,6 @@ servers=[
   {
     :hostname => "box03",
     :ip => "192.168.56.30",
-    :box => "bento/debian-13",
-    :ram => 2048,
-    :cpu => 2
-  },
-  {
-    :hostname => "box04",
-    :ip => "192.168.56.40",
     :box => "bento/debian-13",
     :ram => 2048,
     :cpu => 2
