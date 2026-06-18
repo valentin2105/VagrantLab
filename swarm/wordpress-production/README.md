@@ -72,4 +72,4 @@
 - Modifier le docker-compose.yml afin d'exposer le Wordpress avec Traefik sous le nom `supersite.localhost`
 - Modifier le docker-compose pour ne pas avoir de secrets dans le fichier `docker-compose.yml`
 - Déployer le Wordpress avec le fichier `docker-compose.yml`
-- Scaler le service WP à 3 replicas
+- Scaler le service WP à 3 replicas via le fichier `docker-compose.yml` (update) 
